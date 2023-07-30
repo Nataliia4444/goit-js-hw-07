@@ -1,21 +1,28 @@
-// import { galleryItems } from './gallery-items.js';
-// // Change code below this line
+import { galleryItems } from "./gallery-items.js";
+// Change code below this line
 
-// console.log(galleryItems);
-// In this little assignment you are given a string of space separated numbers, and have to return the highest and lowest number.
+console.log(galleryItems);
+const gallery = document.querySelector(".gallery");
+const img = galleryItems
+  .map(
+    (img) => `<li class="gallery__item">
+   <a class="gallery__link" href="large-image.jpg">
+      <img class="gallery__image" src=${img.preview} alt=${img.description} />
+   </a>
+</li>`
+  )
+  .join("");
+const image = img;
+gallery.innerHTML = image;
+// const lightbox = new SimpleLightbox(".gallery a", {
+//   /* options */
+// });
+// shown.simplelightbox();
+let gallery = new SimpleLightbox(".gallery a");
+gallery.on("show.simplelightbox", function () {
+  // do something…
+});
 
-// Examples
-// highAndLow("1 2 3 4 5");  // return "5 1"
-// highAndLow("1 2 -3 4 5"); // return "5 -3"
-// highAndLow("1 9 3 4 -5"); // return "9 -5"
-// Notes
-// All numbers are valid Int32, no need to validate them.
-// There will always be at least one number in the input string.
-// Output string must be two numbers separated by a single space, and highest number is first.
-function highAndLow(numbers) {
-  const number = numbers.trim();
-  return [...number];
-}
-console.log(highAndLow("1 4 5 6"));
-console.log(highAndLow("1 2 -3 4 5"));
-console.log(highAndLow("1 9 3 4 -5"));
+gallery.on("error.simplelightbox", function (e) {
+  console.log(e); // some usefull information
+});

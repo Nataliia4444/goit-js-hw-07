@@ -20,7 +20,6 @@ const image = preview;
 gallery.innerHTML = image;
 gallery.addEventListener("click", onClick);
 function onClick(event) {
-  console.log(event.target);
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
@@ -35,9 +34,6 @@ function onClick(event) {
   function onKey(event) {
     if (event.key === "Escape") {
       instance.close();
-      console.log(99999);
     }
-
-    //   instance.show();
   }
 }
