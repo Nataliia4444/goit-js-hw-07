@@ -6,7 +6,7 @@ const gallery = document.querySelector(".gallery");
 const img = galleryItems
   .map(
     (img) => `<li class="gallery__item">
-   <a class="gallery__link" href="large-image.jpg">
+   <a class="gallery__link" href=${img.original}>
       <img class="gallery__image" src=${img.preview} alt=${img.description} />
    </a>
 </li>`
@@ -14,15 +14,12 @@ const img = galleryItems
   .join("");
 const image = img;
 gallery.innerHTML = image;
-// const lightbox = new SimpleLightbox(".gallery a", {
-//   /* options */
-// });
-// shown.simplelightbox();
-let gallery = new SimpleLightbox(".gallery a");
-gallery.on("show.simplelightbox", function () {
-  // do something…
+const lightbox = new SimpleLightbox(".gallery a", {
+  captions: true,
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDeloy: 250,
 });
-
-gallery.on("error.simplelightbox", function (e) {
-  console.log(e); // some usefull information
+lightbox.on("show.simplelightbox", function (e) {
+  e.preventDefault();
 });
